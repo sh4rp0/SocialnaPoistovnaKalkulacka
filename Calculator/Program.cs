@@ -1,4 +1,4 @@
-﻿using static SocialnaPoistovnaKalkulacka.Calculator;
+﻿using Calculator;
 
 while (true)
 {
@@ -6,18 +6,10 @@ while (true)
     {
         Console.WriteLine("Zadajte príklad");
 
-        string input = Console.ReadLine();
+        var calculation = new Calculation(Console.ReadLine());
 
-        (int num1, int num2, Operation op) = ParseInput(input);
-
-        ValidateInput(num1, num2);
-
-        double result = Calculate(num1, num2, op);
-
-        decimal roundedResult = decimal.Round((decimal)result, 2, MidpointRounding.AwayFromZero);
-
-        Console.WriteLine(ResultFirstRow(roundedResult));
-        Console.WriteLine(ResultSecondRow(roundedResult));
+        Console.WriteLine(calculation.ResultNumericFormat);
+        Console.WriteLine(calculation.ResultVerbalFormat);
     }
     catch(Exception ex)
     {

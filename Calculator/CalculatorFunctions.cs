@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
+﻿using System.Globalization;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace SocialnaPoistovnaKalkulacka
 {
-    public static class Calculator
+    public static class CalculatorFunctions
     {
         public static string RemoveWhitespace(this string input)
         {
@@ -22,13 +18,11 @@ namespace SocialnaPoistovnaKalkulacka
 
             PronounceNumbers(sb, (int)value);
 
-            sb.Append(" celá ");
+            //sb.Append(" celá ");
 
-            //var test = (value - Math.Truncate(value)) * 100;
+            //int decimalpart = (int)((value - Math.Truncate(value)) * 100);
 
-            int decimalpart = (int)((value - Math.Truncate(value)) * 100);
-
-            PronounceNumbers(sb, decimalpart);
+            //PronounceNumbers(sb, decimalpart);
 
             return sb.ToString();
         }
@@ -74,7 +68,8 @@ namespace SocialnaPoistovnaKalkulacka
         public static string PronounceHundredts(int i) => i switch
         {
             1 => "sto",
-            _ => throw new NotImplementedException("Unexpected value")
+            //_ => throw new NotImplementedException("Unexpected value")
+            _ => throw new NotImplementedException("Nečakaná hodnota")
         };
 
         public static string PronounceOnes(int i) => i switch
@@ -89,7 +84,8 @@ namespace SocialnaPoistovnaKalkulacka
             2 => "dva",
             1 => "jeden",
             0 => "nula",
-            _ => throw new NotImplementedException("Unexpected value")
+            //_ => throw new NotImplementedException("Unexpected value")
+            _ => throw new NotImplementedException("Nečakaná hodnota")
         };
 
         public static string PronounceTeens(int i) => i switch
@@ -98,13 +94,14 @@ namespace SocialnaPoistovnaKalkulacka
             18 => "osemnásť",
             17 => "sedemdnásť",
             16 => "šesťnásť",
-            15 => "päťdnásť",
-            14 => "štyrnásť",
+            15 => "päťnásť",
+            14 => "štrnásť",
             13 => "trinásť",
             12 => "dvanásť",
             11 => "jedenásť",
             10 => "desať",
-            _ => throw new NotImplementedException("Unexpected value")
+            //_ => throw new NotImplementedException("Unexpected value")
+            _ => throw new NotImplementedException("Nečakaná hodnota")
         };
 
         public static string Pronounce2Tens(int i) => i switch
@@ -117,7 +114,8 @@ namespace SocialnaPoistovnaKalkulacka
             4 => "štyridsať",
             3 => "tridsať",
             2 => "dvadsať",
-            _ => throw new NotImplementedException("Unexpected value")
+            //_ => throw new NotImplementedException("Unexpected value")
+            _ => throw new NotImplementedException("Nečakaná hodnota")
         };
 
         public static string ResultFirstRow(decimal value)
@@ -146,14 +144,16 @@ namespace SocialnaPoistovnaKalkulacka
                 return num1 / (double)num2;
             }
 
-            throw new Exception("Calculation operation not recognized.");
+            //throw new Exception("Calculation operation not recognized.");
+            throw new Exception("Matematická operácia nebola rozoznaná.");
         }
 
         public static void ValidateInput(int num1, int num2)
         {
             if (!(Validations.ValidateRange100(num1) && Validations.ValidateRange100(num2) && num1 > num2))
             {
-                throw new Exception("Numbers are not valid.");
+                //throw new Exception("Numbers are not valid.");
+                throw new Exception("Čísla nespĺňajú podmienky.");
             }
         }
 
@@ -187,7 +187,8 @@ namespace SocialnaPoistovnaKalkulacka
                 return (int.Parse(x.num1), int.Parse(x.num2), Operation.Division);
             }
 
-            throw new Exception("Input contains no valid operation symbol");
+            //throw new Exception("Input contains no valid operation symbol");
+            throw new Exception("Vstup neobsahuje žiadny platný symbol operácie.");
         }
 
 
@@ -199,7 +200,8 @@ namespace SocialnaPoistovnaKalkulacka
                 return (result[0], result[1]);
             }
 
-            throw new Exception("String contains unexpected characters.");
+            //throw new Exception("String contains unexpected characters.");
+            throw new Exception("Vstup obsahuje nečakané znaky.");
         }
 
         public enum Operation
